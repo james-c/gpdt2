@@ -20,3 +20,11 @@ env/
 # Operating System Files
 .DS_Store
 Thumbs.db
+
+# Ignore specific top-level file
+/TODO.org
+
+# Ignore Emacs temporary files
+*~
+\#*\#
+.\#*
