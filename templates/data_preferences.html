@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Preferences - GPDT2 Portal</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .description {
+            display: none;
+            margin-top: 5px;
+            padding: 5px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="preferences-container">
+        <h2>Your Data Preferences</h2>
+        <form id="dataPreferencesForm" action="{{ url_for('data_preferences') }}" method="POST">
+            <div class="form-group">
+                <label for="metaConsent">Meta Consent:</label>
+                <select id="metaConsent" name="metaConsent" onchange="applyMetaConsent(this.value)">
+                    <option value="case-by-case" {% if meta_consent == 'case-by-case' %}selected{% endif %}>Case-by-Case</option>
+                    <option value="always" {% if meta_consent == 'always' %}selected{% endif %}>Follow Governance Decisions</option>
+                    <option value="never" {% if meta_consent == 'never' %}selected{% endif %}>Withdraw All Consent</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="researchTypes">Consent for Research Types:</label>
+                {% for research_type in research_types %}
+                <div>
+                    <input type="checkbox" id="researchType-{{ research_type }}" name="researchTypes" value="{{ research_type }}"
+                        {% if research_type in user_preferences['research_types'] %}checked{% endif %}>
+                    {{ research_type }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="categories">Consent for Categories:</label>
+                {% for category in categories %}
+                <div>
+                    <input type="checkbox" id="category-{{ category }}" name="categories" value="{{ category }}"
+                        {% if category in user_preferences['categories'] %}checked{% endif %}>
+                    {{ category }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="specificProjects">Consent for Specific Projects:</label>
+                {% for study in approved_studies %}
+<div>
+    <input type="checkbox" id="specificProject-{{ study.id }}" name="specificProjects" value="{{ study.id }}"
+        {% if study.id|string in user_preferences['specific_projects'] %}checked{% endif %}>
+    {{ study.title }}
+    <span class="info-icon" onclick="toggleDescription('{{ study.id }}-desc')">?</span>
+    <div id="{{ study.id }}-desc" class="description" style="display: none;">
+        {{ study.description }}
+        {% if study.link %}
+            <a href="{{ url_for(study.link) }}" target="_blank">More info…</a>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+            </div>
+            <button type="submit">Update Preferences</button>
+        </form>
+    </div>
+
+<div class="return-to-dashboard">
+    <a href="{{ url_for('dashboard') }}">Return to Dashboard</a>
+</div>
+
+<script>
+    const approved_studies = {{ approved_studies | tojson }};
+    
+    function toggleDescription(id) {
+        var element = document.getElementById(id);
+        if (element.style.display === 'block') {
+            element.style.display = 'none';
+        } else {
+            element.style.display = 'block';
+        }
+    }
+    
+    function toggleHighlight(element, highlight, message = '') {
+        let messageElement = element.querySelector('.highlight-message');
+        
+        if (highlight) {
+            if (!messageElement) {
+                messageElement = document.createElement('span');
+                messageElement.className = 'highlight-message';
+                element.appendChild(messageElement);
+            }
+            messageElement.textContent = message;
+            element.classList.add('highlight-override');
+        } else {
+            if (messageElement) {
+                element.removeChild(messageElement);
+            }
+            element.classList.remove('highlight-override');
+        }
+    }
+    
+    function applyMetaConsent(metaConsent) {
+    const researchTypes = document.querySelectorAll('input[name="researchTypes"]');
+    const categories = document.querySelectorAll('input[name="categories"]');
+    const specificProjects = document.querySelectorAll('input[name="specificProjects"]');
+
+    let highlightMessage = 'Overrides consent for ' + (metaConsent === 'always' ? 'all' : 'none');
+
+    if (metaConsent === 'always') {
+        researchTypes.forEach(rt => {
+            rt.checked = true;
+            toggleHighlight(rt.parentElement, false);
+        });
+        categories.forEach(cat => {
+            cat.checked = true;
+            toggleHighlight(cat.parentElement, false);
+        });
+        specificProjects.forEach(sp => {
+            sp.checked = true;
+            toggleHighlight(sp.parentElement, false);
+        });
+    } else if (metaConsent === 'never') {
+        researchTypes.forEach(rt => {
+            rt.checked = false;
+            toggleHighlight(rt.parentElement, false);
+        });
+        categories.forEach(cat => {
+            cat.checked = false;
+            toggleHighlight(cat.parentElement, false);
+        });
+        specificProjects.forEach(sp => {
+            sp.checked = false;
+            toggleHighlight(sp.parentElement, false);
+        });
+    }
+
+    // Highlight research types that differ from meta-consent
+    researchTypes.forEach(rt => {
+        let highlight = false;
+        if (metaConsent === 'always' && !rt.checked) {
+            highlight = true;
+        } else if (metaConsent === 'never' && rt.checked) {
+            highlight = true;
+        }
+        toggleHighlight(rt.parentElement, highlight, highlight ? highlightMessage : '');
+    });
+
+    // Highlight categories that differ from meta-consent
+    categories.forEach(cat => {
+        let highlight = false;
+        if (metaConsent === 'always' && !cat.checked) {
+            highlight = true;
+        } else if (metaConsent === 'never' && cat.checked) {
+            highlight = true;
+        }
+        toggleHighlight(cat.parentElement, highlight, highlight ? highlightMessage : '');
+    });
+
+    // Highlight specific projects that differ from the research type or category consent
+    specificProjects.forEach(sp => {
+        highlightProjectOverride({ target: sp });
+    });
+}
+    
+    function toggleResearchType(event) {
+        const researchType = event.target.value;
+        const specificProjects = document.querySelectorAll('input[name="specificProjects"]');
+    
+        specificProjects.forEach(sp => {
+            const study = approved_studies.find(study => study.id == sp.value);
+            if (study.research_type === researchType) {
+                sp.checked = event.target.checked;
+                toggleHighlight(sp.parentElement, false);
+            }
+            highlightProjectOverride({ target: sp });
+        });
+    }
+    
+    function toggleCategory(event) {
+    const category = event.target.value;
+    const specificProjects = document.querySelectorAll('input[name="specificProjects"]');
+
+    specificProjects.forEach(sp => {
+        const study = approved_studies.find(study => study.id == sp.value);
+        if (study.category === category) {
+            sp.checked = event.target.checked;
+            toggleHighlight(sp.parentElement, false); // Remove highlight when toggled by category
+            
+            // Check for research type conflict and highlight if necessary
+            const researchTypeCheckbox = document.querySelector(`input[name="researchTypes"][value="${study.research_type}"]`);
+            if (researchTypeCheckbox && sp.checked !== researchTypeCheckbox.checked) {
+                toggleHighlight(sp.parentElement, true, `Overrides research type ${study.research_type}`);
+            } else {
+                toggleHighlight(sp.parentElement, false);
+            }
+        }
+    });
+}
+    
+    function highlightProjectOverride(event) {
+        const projectId = event.target.value;
+        const project = approved_studies.find(study => study.id == projectId);
+    
+        if (project) {
+            const researchTypeCheckbox = document.querySelector(`input[name="researchTypes"][value="${project.research_type}"]`);
+            const categoryCheckbox = document.querySelector(`input[name="categories"][value="${project.category}"]`);
+    
+            let highlight = false;
+            let message = '';
+    
+            if (researchTypeCheckbox && event.target.checked !== researchTypeCheckbox.checked) {
+                highlight = true;
+                message = `Overrides research type ${project.research_type}`;
+            } else if (categoryCheckbox && event.target.checked !== categoryCheckbox.checked) {
+                highlight = true;
+                message = `Overrides research category ${project.category}`;
+            }
+    
+            toggleHighlight(event.target.parentElement, highlight, message);
+        }
+    }
+    
+    function highlightResearchTypeOverride(event) {
+        const researchTypeCheckbox = event.target;
+        const metaConsent = document.querySelector('select[name="metaConsent"]').value;
+        
+        const highlightMessage = 'Overrides consent for ' + (metaConsent === 'always' ? 'Follow governance decisions' : 'Withdraw all consent');
+    
+        if (metaConsent === 'always' && !researchTypeCheckbox.checked) {
+            toggleHighlight(researchTypeCheckbox.parentElement, true, highlightMessage);
+        } else if (metaConsent === 'never' && researchTypeCheckbox.checked) {
+            toggleHighlight(researchTypeCheckbox.parentElement, true, highlightMessage);
+        } else {
+            toggleHighlight(researchTypeCheckbox.parentElement, false);
+        }
+    }
+    
+    function updateProjectsBasedOnType() {
+        const researchTypes = document.querySelectorAll('input[name="researchTypes"]');
+        
+        researchTypes.forEach(rt => {
+            rt.addEventListener('change', toggleResearchType);
+        });
+    }
+    
+    function updateProjectsBasedOnSelection() {
+        const specificProjects = document.querySelectorAll('input[name="specificProjects"]');
+        
+        specificProjects.forEach(sp => {
+            sp.addEventListener('change', highlightProjectOverride);
+        });
+    }
+    
+    // Function to initialize event listeners for research type checkboxes
+    function initializeResearchTypeListeners() {
+        const researchTypes = document.querySelectorAll('input[name="researchTypes"]');
+        researchTypes.forEach(rt => {
+            rt.addEventListener('change', highlightResearchTypeOverride);
+        });
+    }
+    
+    // Function to initialize event listeners for category checkboxes
+    function initializeCategoryListeners() {
+        const categories = document.querySelectorAll('input[name="categories"]');
+        categories.forEach(cat => {
+            cat.addEventListener('change', toggleCategory);
+        });
+    }
+    
+    window.onload = function() {
+        updateProjectsBasedOnType();
+        updateProjectsBasedOnSelection();
+    }
+    
+    // Call initialize functions after DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeResearchTypeListeners();
+        initializeCategoryListeners();
+        updateProjectsBasedOnSelection();
+
+        const metaConsentSelect = document.getElementById('metaConsent');
+        metaConsentSelect.addEventListener('change', function() {
+            applyMetaConsent(this.value);
+        });
+
+        document.getElementById('dataPreferencesForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(this);
+    fetch("{{ url_for('data_preferences') }}", {
+        method: 'POST',
+        body: formData
+    }).then(response => {
+        if (response.ok) {
+            window.location.href = "{{ url_for('dashboard') }}";
+        } else {
+            console.error('Failed to update preferences');
+        }
+    }).catch(error => console.error('Error:', error));
+});
+    });
+
+    document.querySelectorAll('input[name="researchTypes"]').forEach(rt => {
+        rt.addEventListener('change', highlightResearchTypeOverride);
+    });
+</script>
+
+</body>
+</html>

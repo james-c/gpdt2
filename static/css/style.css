@@ -1,24 +1,331 @@
-/* static/css/style.css */
+/* Base Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern-looking font */
     margin: 0;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: #f7f7f7; /* Lighter shade for a fresher look */
 }
 
-.container {
+.container, .dashboard-container, .preferences-container, .activity-container, .info-container, .audit-item, .content-container {
     background-color: white;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px; /* Slightly larger radius for a softer look */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtler shadow for depth */
+    margin-bottom: 20px;
     max-width: 800px;
     margin: auto;
+    margin-bottom: 20px;
 }
 
-h1 {
+/* Typography */
+h1, h2, h3 {
     color: #333;
+    margin-bottom: 16px; /* Uniform margin for headers */
 }
 
-p {
+p, li {
     line-height: 1.6;
+    color: #666; /* Slightly lighter text for better readability */
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* Links & Buttons */
+a, .dashboard-item a, .return-to-dashboard a, button {
+    background-color: #0056b3; /* More modern blue */
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px; /* Uniform padding */
+    border-radius: 4px;
+    display: inline-block;
+    font-weight: normal; /* Removed bold for a cleaner look */
+    text-align: center;
+    width: auto; /* Adjust width as per content */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Consistent with container shadows */
+}
+
+.dashboard-item a, button {
+    border: none;
+    cursor: pointer;
+}
+
+a:hover, button:hover {
+    background-color: #003973; /* Darker shade for hover effect */
+}
+
+.info-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px; /* Center the text vertically */
+    text-align: center; /* Center the text horizontally */
+    background-color: #007bff; /* Your primary blue color */
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 50%; /* Makes the background a circle */
+    cursor: pointer;
+    margin-left: 5px; /* Space it a bit from the checkbox label */
+    user-select: none; /* Prevents the text from being selectable */
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+.description, .audit-descrption{
+    display: none; /* Use !important to enforce the rule */
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+/* Miscellaneous */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* General container for the registration content */
+
+/* Introduction section style */
+.registration-intro h2 {
+    color: #007bff; /* A blue that matches the theme of the buttons */
+    margin-bottom: 10px;
+}
+
+.registration-intro p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Process steps container */
+.process-steps {
+    display: flex;
+    justify-content: start; /* Start aligning items from the start to avoid stretching */
+    align-items: center; /* Align items vertically in the center */
+    padding: 20px 0;
+    margin-top: 20px;
+    overflow: hidden; /* Adds protection against content spilling out */
+}
+
+/* Individual step style */
+.step {
+    position: relative;
+    background: #f4f4f4;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    margin-right: 40px; /* Adjusted margin to give more space for the arrow */
+}
+
+.step:not(:last-child)::after {
+    content: '→';
+    color: #007bff;
+    position: absolute;
+    right: -20px; /* Adjust based on the actual space needed */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.step:hover {
+    background: #007bff;
+    color: white;
+}
+
+.current-step {
+    background: #007bff;
+    color: white;
+}
+
+/* Step details section style */
+.step-details h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.step-details ol {
+    padding-left: 20px;
+}
+
+.step-details li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Navigation buttons style */
+.next-step-button a, .previous-step-button a {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 20px;
+    color: white;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.previous-step-button a {
+    background-color: #d3d3d3;
+    color: black;
+}
+
+.qa-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.qa-pair {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.qa-pair:nth-child(odd) {
+    justify-content: flex-start;
+}
+
+.qa-pair:nth-child(even) {
+    justify-content: flex-start; /* Changed to justify-content: flex-start */
+    flex-direction: row; /* Changed to flex-direction: row */
+}
+
+.qa-image-left, .qa-image-right {
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    border-radius: 50%;
+}
+
+.qa-question, .qa-answer {
+    max-width: 70%;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.approve-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.reject-button {
+    background-color: #f44336;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.highlight-override {
+    background-color: #cce5ff; /* Light blue background for informational highlight */
+    color: #004085; /* Dark blue text color for better contrast */
+    border: 1px solid #b8daff; /* Border to match the background */
+    border-radius: 5px; /* Rounded corners for a softer look */
+    padding: 5px; /* Padding for better spacing */
+}
+
+.highlight-message {
+    margin-left: 10px;
+    color: #007bff; /* Adjust this color to match your informational highlight */
+    font-size: 0.9em;
+}
+
+.dashboard-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.studies-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.study-item {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.study-item h3 {
+    margin-top: 0;
+}
+
+.study-actions {
+    margin-top: 10px;
+}
+
+.approve-button, .reject-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.reject-button {
+    background-color: #dc3545;
+}
+
+.approve-button:hover {
+    background-color: #0056b3;
+}
+
+.reject-button:hover {
+    background-color: #c82333;
+}
+
+.return-to-dashboard {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.return-to-dashboard a {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.return-to-dashboard a:hover {
+    background-color: #0056b3;
 }

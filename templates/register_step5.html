@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Agreement - GPDT2 Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="content-container">
+        <div class="registration-intro">
+            <h2>Legal Agreement</h2>
+            <p>Please review the following legal agreement carefully before continuing your registration.</p>
+        </div>
+
+        <div class="process-steps">
+            <div class="step">Trust Overview</div>
+            <div class="step">Decision Impact</div>
+            <div class="step">Q & A's</div>
+            <div class="step current-step">Legal Agreement</div>
+            <div class="step">Identifiable Information</div>
+        </div>
+
+        <div class="step-details">
+            <div class="legal-text">
+                <h3>Consent to Use of Data</h3>
+                <p>By proceeding, you agree that the GPDT2 Trust may use your personal data for medical research purposes in accordance with our Privacy Policy. Your data will be used responsibly and only for projects you have explicitly consented to, unless you opt to allow broader use.</p>
+
+                <h3>Privacy and Data Security</h3>
+                <p>We commit to protecting your privacy and securing your data against unauthorized access. We employ industry-standard security measures and comply with applicable data protection laws.</p>
+
+                <h3>Withdrawal of Consent</h3>
+                <p>You may withdraw your consent at any time. Withdrawal will not affect the lawfulness of processing based on consent before its withdrawal.</p>
+
+                <h3>Agreement to Terms</h3>
+                <p>By checking the box below, you acknowledge that you have read and understood this agreement and agree to be bound by its terms.</p>
+
+                <label>
+                    <input type="checkbox" name="accept_terms" required>
+                    I agree to the terms and conditions outlined above.
+                </label>
+            </div>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="{{ url_for('register_step4') }}" class="previous-step-button">Previous Step</a>
+            <a href="{{ url_for('register_step6') }}" class="next-step-button" onclick="document.forms[0].submit()">Accept and Continue</a>
+        </div>
+    </div>
+</body>
+</html>

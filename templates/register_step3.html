@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - Step 3</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> <!-- Updated CSS path -->
+</head>
+<body>
+    <div class="content-container">
+        <div class="registration-intro">
+            <h2>Understanding Your Decision Impact</h2>
+            <p>This step of the registration process is designed to help you grasp the significance of your decisions regarding your data. Your preferences shape the future of medical research and have a direct impact on patient care and privacy.</p>
+        </div>
+
+        <div class="process-steps">
+            <div class="step">Trust Overview</div>
+            <div class="step current-step">Decision Impact</div>
+            <div class="step">Q & A's</div>
+            <div class="step">Legal Agreement</div>
+            <div class="step">Identifiable Information</div>
+        </div>
+
+        <div class="step-details">
+            <h3>Control Over Your Data</h3>
+            <p>You have the power to decide how your data is used. Whether it's contributing to specific types of research or opting out entirely, your choices are respected and implemented by the GPDT2 Trust.</p>
+
+            <h3>The Impact of Your Decisions</h3>
+            <p>By allowing your data to be used for research, you're contributing to advancements in medical science. Your data could help in developing new treatments, understanding diseases better, and improving healthcare outcomes. However, we ensure that your privacy is never compromised.</p>
+
+            <h3>Setting Your Preferences</h3>
+            <p>In the following steps, you'll have the opportunity to set your data usage preferences. We'll guide you through each category of research and explain what your data could be used for, giving you the information needed to make informed decisions.</p>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="{{ url_for('register_step2') }}" class="previous-step-button">Previous Step</a>
+            <a href="{{ url_for('register_step4') }}" class="next-step-button">Next Step: Q & A's</a>
+        </div>
+    </div>
+</body>
+</html>

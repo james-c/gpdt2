@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration - Step 1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="content-container">
+        <div class="registration-intro">
+            <h2>Welcome to the GPDT2 Trust Registration Process</h2>
+            <p>We are delighted to have you join our effort to empower patients through responsible data use. This registration process will guide you through understanding the trust, making informed decisions about your data, and finalizing your membership.</p>
+        </div>
+
+        <div class="process-steps">
+            <div class="step current-step">Trust Overview</div>
+            <div class="step">Decision Impact</div>
+            <div class="step">Q & A's</div>
+            <div class="step">Legal Agreement</div>
+            <div class="step">Identifiable Information</div>
+        </div>
+
+        <div class="step-details">
+            <h3>Step-by-Step Guide:</h3>
+            <ol>
+                <li>
+                    <strong>Trust Overview:</strong> Learn about the GPDT2 Trust, our mission, governance structure, and how we protect your data.
+                </li>
+                <li>
+                    <strong>Decision Impact:</strong> Understand the decisions you can make regarding your data and how these choices impact research and privacy.
+                </li>
+                <li>
+                    <strong>Q & A's:</strong> Complete a short Q & A section to ensure you have a clear understanding of the trust and your rights.
+                </li>
+                <li>
+                    <strong>Legal Agreement:</strong> Review and sign a legal document that outlines the terms of your participation and data use agreement.
+                </li>
+                <li>
+                    <strong>Identifiable Information:</strong> Provide identifiable information to locate your data within the NHS systems securely.
+                </li>
+            </ol>
+        </div>
+
+        <div class="registration-conclusion">
+            <p>If you have any questions throughout this process, please do not hesitate to contact us. Our team is here to ensure your registration experience is smooth and informative.</p>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="{{ url_for('register_step2') }}" class="next-step-button">Next Step</a>
+        </div>
+    </div>
+</body>
+</html>

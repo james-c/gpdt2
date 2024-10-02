@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Governance Information - GPDT2 Portal</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+
+        <div class="info-container">
+
+            <h2>Governance Information</h2>
+
+            <h3>Governance Structure</h3>
+            <ul>
+                <li onclick="toggleDescription('structure1')">Overview of Governance Structure
+                    <p id="structure1" class="description">The GPDT2 trust is governed by a board consisting of elected patient representatives, healthcare professionals, and data privacy experts. This structure ensures balanced decision-making with the interests of all stakeholders in mind.</p>
+                </li>
+            </ul>
+
+            <h3>Board Members</h3>
+            <ul>
+                <li onclick="toggleDescription('member1')">Dr. Jane Dott - Chairperson
+                    <p id="member1" class="description">Dr. Jane Dott has over 20 years of experience in healthcare management and has been a pivotal figure in advocating for patient rights in data usage. Her leadership focuses on transparency and ethical use of data.</p>
+                </li>
+                <li onclick="toggleDescription('member2')">Mr. John Smith - Patient Representative
+                    <p id="member2" class="description">John Smith, a former patient and active member of the patient advocacy community, brings valuable insights into patient concerns and needs regarding data privacy and use.</p>
+                </li>
+                <li onclick="toggleDescription('member3')">Dr. Emily Turner - Data Privacy Expert
+                    <p id="member3" class="description" style="display:none;">With a Ph.D. in Cybersecurity and a career dedicated to protecting sensitive information, Dr. Turner advises on best practices for data privacy and security within the trust. Her expertise ensures the highest standards of data protection are maintained.</p>
+                </li>
+                <li onclick="toggleDescription('member4')">Ms. Linda Khan - Healthcare Professional
+                    <p id="member4" class="description" style="display:none;">As a seasoned nurse practitioner with firsthand experience in patient care, Ms. Khan brings a practical perspective on how data can be used responsibly to improve healthcare outcomes. Her commitment to patient welfare is a cornerstone of her contribution to the board.</p>
+                </li>
+                <li onclick="toggleDescription('member5')">Mr. Alex Rodriguez - Technology Advisor
+                    <p id="member5" class="description" style="display:none;">With extensive experience in healthcare technology solutions, Mr. Rodriguez provides insights into the latest technological advancements and their potential to enhance research and patient care. His role is pivotal in integrating innovative tech approaches with the trust's objectives.</p>
+                </li>
+
+            </ul>
+
+            <h3>Recent Decisions</h3>
+            <ul>
+                <li onclick="toggleDescription('decision1')">15 November 2023 - Adoption of New Data Privacy Policy
+                    <p id="decision1" class="description">On 15 November 2023, the board voted to adopt a new data privacy policy that increases protections for patient data, restricting access to only vetted research projects. This decision reflects our ongoing commitment to data security and patient privacy.</p>
+                </li>
+                <li onclick="toggleDescription('decision2')">10 December 2023 - Expansion of Research Categories
+                    <p id="decision2" class="description">On 10 December 2023, the board approved the expansion of research categories eligible for data use. This expansion includes rare disease research and environmental health studies, broadening the scope of impactful research supported by our trust.</p>
+                </li>
+                <li onclick="toggleDescription('decision3')">20 January 2024 - Implementation of Quarterly Transparency Reports
+                    <p id="decision3" class="description">On 20 January 2024, the board decided to begin publishing quarterly transparency reports. These reports aim to detail the trust's activities, such as data use approvals, project outcomes, and governance changes, ensuring transparency and trust member engagement.</p>
+                </li>
+                <li onclick="toggleDescription('decision4')">05 February 2024 - Introduction of Patient Advisory Panels
+                    <p id="decision4" class="description">On 05 February 2024, to further involve patients in the governance process, the board approved the creation of Patient Advisory Panels. These panels serve as a platform for direct patient input on proposed projects and policy changes, emphasizing the importance of patient voices in our decision-making process.</p>
+                </li>
+                <li onclick="toggleDescription('decision5')">28 February 2024 - Enhanced Data Security Measures
+                    <p id="decision5" class="description">On 28 February 2024, acknowledging the critical importance of safeguarding patient data, the board ratified enhanced data security measures. These measures include the adoption of state-of-the-art encryption technologies and stringent access controls, aimed at preventing unauthorized access and data breaches.</p>
+                </li>
+
+                </ul>
+        </div>
+
+        <div class="return-to-dashboard">
+            <a href="{{ url_for('dashboard') }}">Return to Dashboard</a>
+        </div>
+
+        <script>
+        function toggleDescription(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === "block") {
+                element.style.display = "none";
+            } else {
+                element.style.display = "block";
+            }
+            }
+        </script>
+
+    </body>
+</html>

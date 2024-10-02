@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q & A - GPDT2 Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="content-container">
+        <div class="registration-intro">
+            <h2>Registration Q & A</h2>
+            <p>To ensure you understand the key aspects of participating in the GPDT2 Trust, we've prepared some questions and answers that you might find helpful.</p>
+        </div>
+
+        <div class="process-steps">
+            <div class="step">Trust Overview</div>
+            <div class="step">Decision Impact</div>
+            <div class="step current-step">Q & A's</div>
+            <div class="step">Legal Agreement</div>
+            <div class="step">Identifiable Information</div>
+        </div>
+
+        <div class="qa-section">
+            <h2>Who governs the use of data within the GPDT2 Trust?</h2>
+            <div class="qa-pair">
+                <img src="{{ url_for('static', filename='images/person_1.png') }}" alt="Questioner" class="qa-image-left">
+                <div class="qa-question">
+                    <p><strong>Question:</strong> Is it data scientists and researchers?</p>
+                </div>
+                <img src="{{ url_for('static', filename='images/person_answer.png') }}" alt="Answerer" class="qa-image-right">
+                <div class="qa-answer">
+                    <p><strong>Answer:</strong> No, the use of data within the GPDT2 Trust is governed by an independent board comprising patients, healthcare professionals, and data privacy experts.</p>
+                </div>
+            </div>
+
+            <h2>Can you change your data sharing preferences after joining the trust?</h2>
+            <div class="qa-pair">
+                <img src="{{ url_for('static', filename='images/person_2.png') }}" alt="Questioner" class="qa-image-left">
+                <div class="qa-question">
+                    <p><strong>Question:</strong> Are preferences final once set?</p>
+                </div>
+                <img src="{{ url_for('static', filename='images/person_answer.png') }}" alt="Answerer" class="qa-image-right">
+                <div class="qa-answer">
+                    <p><strong>Answer:</strong> No, you can change your data sharing preferences at any time through your member dashboard.</p>
+                </div>
+            </div>
+
+            <h2>What types of research can your data be used for?</h2>
+            <div class="qa-pair">
+                <img src="{{ url_for('static', filename='images/person_3.png') }}" alt="Questioner" class="qa-image-left">
+                <div class="qa-question">
+                    <p><strong>Question:</strong> Can it be used for marketing and commercial purposes?</p>
+                </div>
+                <img src="{{ url_for('static', filename='images/person_answer.png') }}" alt="Answerer" class="qa-image-right">
+                <div class="qa-answer">
+                    <p><strong>Answer:</strong> No, your data can only be used for research projects you explicitly agree to. It cannot be used for marketing and commercial purposes.</p>
+                </div>
+            </div>
+
+            <h2>How does the GPDT2 Trust protect your data privacy?</h2>
+            <div class="qa-pair">
+                <img src="{{ url_for('static', filename='images/person_1.png') }}" alt="Questioner" class="qa-image-left">
+                <div class="qa-question">
+                    <p><strong>Question:</strong> Is it by sharing data with all interested parties without restrictions?</p>
+                </div>
+                <img src="{{ url_for('static', filename='images/person_answer.png') }}" alt="Answerer" class="qa-image-right">
+                <div class="qa-answer">
+                    <p><strong>Answer:</strong> No, the GPDT2 Trust protects your data privacy by anonymizing data before it's used in research. Your personal information is never shared without your explicit consent.</p>
+                </div>
+            </div>
+            
+            <h2>In case of a data breach, what measures are in place?</h2>
+            <div class="qa-pair">
+                <img src="{{ url_for('static', filename='images/person_2.png') }}" alt="Questioner" class="qa-image-left">
+                <div class="qa-question">
+                    <p><strong>Question:</strong> Are data breach incidents only reported annually?</p>
+                </div>
+                <img src="{{ url_for('static', filename='images/person_answer.png') }}" alt="Answerer" class="qa-image-right">
+                <div class="qa-answer">
+                    <p><strong>Answer:</strong> No, in case of a data breach, immediate notification is sent to affected members and steps are taken to secure data and prevent further breaches.</p>
+                </div>
+            </div>
+            
+            <h2>Who can access your personal data within the GPDT2 Trust?</h2>
+            <div class="qa-pair">
+                <img src="{{ url_for('static', filename='images/person_3.png') }}" alt="Questioner" class="qa-image-left">
+                <div class="qa-question">
+                    <p><strong>Question:</strong> Can any internet user access my data?</p>
+                </div>
+                <img src="{{ url_for('static', filename='images/person_answer.png') }}" alt="Answerer" class="qa-image-right">
+                <div class="qa-answer">
+                    <p><strong>Answer:</strong> No, only authorized researchers for approved projects can access your personal data. Your data is never shared publicly or with unauthorized parties.</p>
+                </div>
+            </div>
+            
+            <h2>What is your role in the governance of the GPDT2 Trust?</h2>
+            <div class="qa-pair">
+                <img src="{{ url_for('static', filename='images/person_1.png') }}" alt="Questioner" class="qa-image-left">
+                <div class="qa-question">
+                    <p><strong>Question:</strong> Do members have no role in governance?</p>
+                </div>
+                <img src="{{ url_for('static', filename='images/person_answer.png') }}" alt="Answerer" class="qa-image-right">
+                <div class="qa-answer">
+                    <p><strong>Answer:</strong> No, members can vote on key decisions and stand for governance positions. Your voice and participation are crucial in guiding the trust's direction.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="{{ url_for('register_step3') }}" class="previous-step-button">Previous Step</a>
+            <a href="{{ url_for('register_step5') }}" class="next-step-button">Next Step: Legal Agreement</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - Step 2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="content-container">
+        <div class="registration-intro">
+            <h2>Trust Overview</h2>
+            <p>Welcome to the first step of your registration. Understanding the GPDT2 Trust and our commitment to your privacy and the ethical use of your data is crucial. We're here to ensure that your data contributes to meaningful research while protecting your rights and preferences.</p>
+        </div>
+
+        <div class="process-steps">
+            <div class="step current-step">Trust Overview</div>
+            <div class="step">Decision Impact</div>
+            <div class="step">Q & A's</div>
+            <div class="step">Legal Agreement</div>
+            <div class="step">Identifiable Information</div>
+        </div>
+
+        <div class="step-details">
+            <h3>Our Mission</h3>
+            <p>The GPDT2 Trust aims to facilitate medical research that can lead to breakthroughs in treatment and patient care. At the same time, we stand firm in our commitment to protecting the privacy and rights of our patients. Your data will only be used in ways you're comfortable with, under strict ethical standards.</p>
+
+            <h3>How Your Data Is Used</h3>
+            <p>Your data can help researchers understand diseases better, develop new treatments, and improve patient care. However, you have full control over which types of research your data can be used for. We'll guide you through setting your preferences in the next steps.</p>
+
+            <h3>Our Governance Structure</h3>
+            <p>The Trust is overseen by a governance board made up of patients, healthcare professionals, and data privacy experts. This diverse group ensures that all decisions made about data use are balanced, ethical, and in the best interest of patients and research.</p>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="{{ url_for('register_step1') }}" class="previous-step-button">Previous Step</a>
+            <a href="{{ url_for('register_step3') }}" class="next-step-button">Next Step</a>
+        </div>
+    </div>
+</body>
+</html>

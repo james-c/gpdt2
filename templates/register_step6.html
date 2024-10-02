@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identifiable Information - GPDT2 Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="content-container">
+        <div class="registration-intro">
+            <h2>Provide Identifiable Information</h2>
+            <p>
+                As you proceed to finalize your registration with the GPDT2 Trust, it is essential that we securely link your identifiable information to your medical records within the NHS systems. This step requires you to provide specific personal details, including your full name, date of birth, NHS number, and other relevant data. 
+            </p>
+            <p>
+                The GPDT2 Trust employs advanced security measures and uses pseudonymous identifiers to ensure the utmost privacy and protection of your information. These measures are designed to prevent any direct access to or disclosure of your personal and sensitive data. By utilizing pseudonymous identifiers, we can maintain your anonymity within research databases, ensuring that your identity remains shielded from researchers and other external parties. 
+            </p>
+            <p>
+                Furthermore, our data protection protocols are compliant with the highest standards of data privacy laws and regulations, including GDPR. We commit to using your data solely for the purposes you have explicitly consented to and under strict ethical guidelines. Your participation is voluntary, and you retain full control over the use of your data. At any point, you can withdraw your consent or adjust your preferences through your member dashboard.
+            </p> 
+            <p>
+                This process not only facilitates the efficient and secure use of data for health research but also ensures that any data usage aligns with your personal choices and legal rights. The information you provide today will be encrypted and securely transmitted to our data systems, where it will be handled with the highest level of security and confidentiality.
+            </p>
+            <p> 
+                Please fill in the required fields below to complete this crucial step of your registration. This information will enable us to accurately associate your health records with your GPDT2 Trust profile without compromising your privacy or autonomy.
+            </p>
+        </div>
+
+        <div class="process-steps">
+            <div class="step">Trust Overview</div>
+            <div class="step">Decision Impact</div>
+            <div class="step">Q & A's</div>
+            <div class="step">Legal Agreement</div>
+            <div class="step current-step">Identifiable Information</div>
+        </div>
+
+        <div class="step-details">
+            <form action="{{ url_for('dashboard') }}" method="post">
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+                <div class="form-group">
+                    <label for="nhsNumber">NHS Number:</label>
+                    <input type="text" id="nhsNumber" name="nhsNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="postcode">Postcode:</label>
+                    <input type="text" id="postcode" name="postcode" required>
+                </div>
+                <div class="form-group">
+                    <label for="gpName">GP Name:</label>
+                    <input type="text" id="gpName" name="gpName" required>
+                </div>
+                <div class="form-group">
+                    <label for="gpAddress">GP Surgery Address:</label>
+                    <input type="text" id="gpAddress" name="gpAddress" required>
+                </div>
+
+                <div class="navigation-buttons">
+                    <a href="{{ url_for('register_step5') }}" class="previous-step-button">Previous Step</a>
+                    <a href="{{ url_for('dashboard') }}" class="next-step-button" onclick="document.forms[0].submit()">Submit and Proceed to Dashboard</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

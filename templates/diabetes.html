@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Management and Prevention Study - GPDT2 Portal</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .content-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .section p {
+            line-height: 1.6;
+            color: #666;
+        }
+        .placeholder-image {
+            width: 100%;
+            height: 200px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h2>Diabetes Management and Prevention Study</h2>
+        
+        <div class="section">
+            <h3>Introduction</h3>
+            <div class="placeholder-image">[Image Placeholder]</div>
+            <p>
+                Welcome to the Diabetes Management and Prevention Study. This research aims to investigate the effectiveness of lifestyle interventions on long-term diabetes outcomes. By understanding how diet, exercise, and behavioral changes can impact diabetes management, we hope to provide valuable insights and strategies for patients and healthcare providers.
+            </p>
+        </div>
+        
+        <div class="section">
+            <h3>Study Overview</h3>
+            <div class="placeholder-image">[Image Placeholder]</div>
+            <p>
+                This study follows participants over several years to observe the long-term effects of various lifestyle interventions on diabetes management. We will analyze how different diets, exercise routines, and behavioral modifications influence blood sugar control and overall health. The study aims to identify which interventions are most effective in preventing complications and improving the quality of life for individuals with diabetes.
+            </p>
+        </div>
+        
+        <div class="section">
+            <h3>What Your Data Will Be Used For</h3>
+            <div class="placeholder-image">[Image Placeholder]</div>
+            <p>
+                Your data will play a crucial role in this study. By contributing your health information, you help us understand the impact of lifestyle changes on diabetes management. The data collected will be used to:
+            </p>
+            <ul>
+                <li>Analyze the effectiveness of different diet and exercise regimens.</li>
+                <li>Identify patterns and trends in blood sugar control.</li>
+                <li>Develop personalized intervention strategies for diabetes management.</li>
+                <li>Share findings with the medical community to improve diabetes care practices.</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h3>Project Team</h3>
+            <div class="placeholder-image">[Image Placeholder]</div>
+            <p>
+                Our project team consists of experts in diabetes research, nutrition, exercise science, and behavioral health. Together, we are dedicated to improving diabetes management and prevention through evidence-based strategies. Meet our team:
+            </p>
+            <ul>
+                <li>Dr. Jane Dott - Lead Researcher, Diabetes Specialist</li>
+                <li>John Smith - Nutritionist</li>
+                <li>Dr. Emily White - Exercise Scientist</li>
+                <li>Dr. Robert Brown - Behavioral Health Expert</li>
+            </ul>
+        </div>
+        
+        <div class="return-to-dashboard">
+            <a href="{{ url_for('dashboard') }}">Return to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

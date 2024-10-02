@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recent Activity - GPDT2 Portal</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+
+        <div class="activity-container">
+            <h2>Recent Activity</h2>
+            <!-- Activity Content -->
+
+            <h3>Account Changes</h3>
+            <ul>
+                <li onclick="toggleDescription('change1')">Updated data preferences for Genetic Research - <em>March 1, 2024</em>
+                    <p id="change1" class="description">This change reflects your updated consent to include your data in genetic research studies.</p>
+                </li>
+                <li onclick="toggleDescription('change2')">Consented to the Diabetes Management and Prevention Study - <em>February 25, 2024</em>
+                    <p id="change2" class="description">You have consented to share your data with the Diabetes Management and Prevention Study, focusing on lifestyle interventions and outcomes.</p>
+                </li>
+                <li onclick="toggleDescription('change3')">Changed password - <em>February 20, 2024</em>
+                    <p id="change3" class="description">Your password was successfully updated, enhancing the security of your account.</p>
+                </li>
+            </ul>
+
+            <!-- Data Requests by Projects -->
+            <h3>Data Requests by Projects</h3>
+            <ul>
+                <li onclick="toggleDescription('project1')">Neurodegenerative Disease Research Initiative - <strong>Allowed</strong> - <em>March 2, 2024</em>
+                    <p id="project1" class="description">Your data has been shared with the Neurodegenerative Disease Research Initiative, aiming to identify early detection markers for diseases like Alzheimer’s.</p>
+                </li>
+                <li onclick="toggleDescription('project3')">Sleep Study Research on Insomnia - <strong>Rejected</strong> - <em>February 28, 2024</em>
+                    <p id="project3" class="description">You chose not to share your data with the Sleep Study Research on Insomnia, as it did not align with your current health concerns.</p>
+                </li>
+                <li onclick="toggleDescription('project4')">Nutritional Health Trends Project - <strong>Allowed</strong> - <em>February 22, 2024</em>
+                    <p id="project4" class="description">Consent was given to use your data in the Nutritional Health Trends Project, studying the impacts of diet on long-term health.</p>
+                </li>
+            </ul>
+
+            <!-- Governance Level Actions -->
+            <h3>Governance Actions</h3>
+            <ul>
+                <li onclick="toggleDescription('governance1')">New data sharing policy implemented - <em>March 3, 2024</em>
+                    <p id="governance1" class="description">A new data sharing policy has been implemented, enhancing privacy and control over your medical data.</p>
+                </li>
+                <li onclick="toggleDescription('governance2')">Annual report published - <em>February 15, 2024</em>
+                    <p id="governance2" class="description">The annual report details the trust's achievements and impact over the past year, including how patient data has contributed to research advancements.</p>
+                </li>
+                <li onclick="toggleDescription('governance3')">Governance board member election - <em>January 30, 2024</em>
+                    <p id="governance3" class="description">Elections for new governance board members were held, impacting decision-making processes within the trust.</p>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="return-to-dashboard">
+            <a href="{{ url_for('dashboard') }}">Return to Dashboard</a>
+        </div>
+
+        <script>
+            function toggleDescription(id) {
+                var element = document.getElementById(id);
+                if (element.style.display === "block") {
+                    element.style.display = "none";
+                } else {
+                    element.style.display = "block";
+                }
+            }
+        </script>
+
+    </body>
+</html>

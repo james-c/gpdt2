@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data Audit - GPDT2 Portal</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+
+        <div class="content-container">
+            <h1>Data Audit Log</h1>
+            <p>Below is a list of actions that have interacted with your data. Click on any item to view more details about that action.</p>
+
+            <!-- Audit Items -->
+            <div class="audit-item" onclick="toggleDescription('audit1')">
+                <strong>2024-03-15 14:30 - Data Accessed for Research</strong>
+                <div id="audit1" class="audit-description">
+                    <p><strong>Action Type:</strong> Data Accessed for Research</p>
+                    <p><strong>Action Description:</strong> Your data was accessed as part of a research study on diabetes treatment efficacy.</p>
+                    <p><strong>Initiator/Requester:</strong> Dr. Sarah Lee, Diabetes Research Initiative</p>
+                    <p><strong>Purpose:</strong> To analyze patient data for patterns in treatment outcomes.</p>
+                    <p><strong>Consent Status:</strong> Action was in accordance with your consent preferences for participation in diabetes-related research.</p>
+                    <p><strong>Outcome:</strong> Data contributed to ongoing research study; no personal identifiers were shared.</p>
+                    <p><strong>Additional Notes:</strong> This study aims to improve treatment protocols and patient care for diabetes sufferers globally.</p>
+                </div>
+            </div>
+
+            <div class="audit-item" onclick="toggleDescription('audit2')">
+                <strong>2024-02-28 09:45 - Data Request Rejected</strong>
+                <div id="audit2" class="audit-description" style="display:none;">
+                    <p><strong>Action Type:</strong> Data Request Rejected</p>
+                    <p><strong>Action Description:</strong> A request to access your data for a study on sleep patterns was rejected.</p>
+                    <p><strong>Initiator/Requester:</strong> Sleep Study Research Group</p>
+                    <p><strong>Purpose:</strong> The request did not align with your consent preferences.</p>
+                    <p><strong>Consent Status:</strong> Rejected based on your preferences against participation in studies unrelated to your conditions.</p>
+                    <p><strong>Outcome:</strong> No data shared.</p>
+                    <p><strong>Additional Notes:</strong> You can update your preferences to participate in future studies if interested.</p>
+                </div>
+            </div>
+
+            <div class="audit-item" onclick="toggleDescription('audit3')">
+                <strong>2024-03-10 11:30 - Anonymous Data Query</strong>
+                <div id="audit3" class="audit-description" style="display:none;">
+                    <p><strong>Action Type:</strong> Anonymous Data Query</p>
+                    <p><strong>Action Description:</strong> Your data was included in an anonymized query for statistical analysis.</p>
+                    <p><strong>Initiator/Requester:</strong> Public Health England</p>
+                    <p><strong>Purpose:</strong> To gather statistical insights on treatment effectiveness across populations.</p>
+                    <p><strong>Consent Status:</strong> Action was in accordance with your consent to contribute to public health research.</p>
+                    <p><strong>Outcome:</strong> Data included in aggregate analysis; no identifiable information was used.</p>
+                    <p><strong>Additional Notes:</strong> Such queries help improve healthcare policies and treatment strategies.</p>
+                </div>
+            </div>
+
+            <div class="audit-item" onclick="toggleDescription('audit4')">
+                <strong>2024-03-20 15:20 - De-pseudonymization Request</strong>
+                <div id="audit4" class="audit-description" style="display:none;">
+                    <p><strong>Action Type:</strong> De-pseudonymization Request</p>
+                    <p><strong>Action Description:</strong> A request for de-pseudonymization of your data for a follow-up study on treatment outcomes.</p>
+                    <p><strong>Initiator/Requester:</strong> National Health Research Institute</p>
+                    <p><strong>Purpose:</strong> To accurately link follow-up health outcomes with the initial study data.</p>
+                    <p><strong>Consent Status:</strong> Pending your approval.</p>
+                    <p><strong>Outcome:</strong> Request is pending; your action is required to proceed.</p>
+                    <p><strong>Additional Notes:</strong> This process is crucial for the continuity and accuracy of long-term health studies.</p>
+                </div>
+            </div>
+
+            <div class="audit-item" onclick="toggleDescription('audit5')">
+                <strong>2024-04-05 10:00 - Data Accessed for Clinical Trial</strong>
+                <div id="audit5" class="audit-description" style="display:none;">
+                    <p><strong>Action Type:</strong> Data Accessed for Research</p>
+                    <p><strong>Action Description:</strong> Your data was accessed as part of your participation in a clinical trial on a new asthma treatment.</p>
+                    <p><strong>Initiator/Requester:</strong> Asthma Research Foundation</p>
+                    <p><strong>Purpose:</strong> To study the effectiveness of a new treatment option for asthma.</p>
+                    <p><strong>Consent Status:</strong> Action was in accordance with your explicit consent to participate in this trial.</p>
+                    <p><strong>Outcome:</strong> Data used for ongoing monitoring and study analysis.</p>
+                    <p><strong>Additional Notes:</strong> Participation in such trials is vital for developing new treatments.</p>
+                </div>
+            </div>
+
+            <div class="audit-item" onclick="toggleDescription('audit6')">
+                <strong>2024-04-12 14:15 - Data Update Request</strong>
+                <div id="audit6" class="audit-description" style="display:none;">
+                    <p><strong>Action Type:</strong> Data Update Request</p>
+                    <p><strong>Action Description:</strong> A request was made to update your medical records following a recent diagnosis.</p>
+                    <p><strong>Initiator/Requester:</strong> Your GP, Dr. Martin Hughes</p>
+                    <p><strong>Purpose:</strong> To ensure your medical records are current and accurate.</p>
+                    <p><strong>Consent Status:</strong> Automatically approved as per NHS data management policies.</p>
+                    <p><strong>Outcome:</strong> Your medical records have been updated.</p>
+                    <p><strong>Additional Notes:</strong> Keeping your medical records up-to-date helps in providing you with the best care.</p>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <script>
+            function toggleDescription(auditId) {
+            var description = document.getElementById(auditId);
+            if (description.style.display === "none") {
+            description.style.display = "block";
+            } else {
+            description.style.display = "none";
+            }
+            }
+        </script>
+
+        <div class="return-to-dashboard">
+            <a href="{{ url_for('dashboard') }}">Return to Dashboard</a>
+        </div>
+
+    </body>
+</html>
+

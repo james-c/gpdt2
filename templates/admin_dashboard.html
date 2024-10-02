@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - GPDT2 Portal</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <h2>Admin Dashboard</h2>
+        <div class="dashboard-item">
+            <h3>Manage Studies</h3>
+            <a href="{{ url_for('admin_studies') }}">Go to Studies</a>
+        </div>
+        <div class="dashboard-item">
+            <h3>Governance</h3>
+            <a href="#">Governance Overview</a>
+        </div>
+        <div class="dashboard-item">
+            <h3>Review Requests</h3>
+            <a href="#">Review Data Requests</a>
+        </div>
+        <div class="dashboard-item">
+            <h3>Settings</h3>
+            <a href="#">Admin Settings</a>
+        </div>
+    </div>
+
+    <div class="return-to-dashboard">
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+</body>
+</html>

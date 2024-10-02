@@ -7,6 +7,7 @@
         <h2>Login</h2>
         <form action="" method="post">
             {{ form.hidden_tag() }}
+            <p>Form CSRF Token: {{ csrf_token() }}</p>
             <p>
                 {{ form.username.label }}<br>
                 {{ form.username(size=32) }}

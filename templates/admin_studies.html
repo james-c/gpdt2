@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Studies - GPDT2 Portal</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .approved {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .rejected {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .approve-btn {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .reject-btn {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-dashboard-container">
+        <h2>Manage Studies</h2>
+        {% for study in studies %}
+        <div class="study">
+            <h3>{{ study.title }}</h3>
+            <p>{{ study.description }}</p>
+            <p>Category: {{ study.category }}</p>
+            <p>Research Type: {{ study.research_type }}</p>
+            {% if study.approved %}
+                <div class="approved">Approved</div>
+            {% elif study.rejected %}
+                <div class="rejected">Rejected</div>
+            {% else %}
+                <form action="{{ url_for('approve_study', study_id=study.id) }}" method="post">
+                    {{ form.hidden_tag() }} <!-- Ensure CSRF token is included -->
+                    <button type="submit" name="submit" class="approve-btn">Approve</button>
+                </form>
+                <form action="{{ url_for('reject_study', study_id=study.id) }}" method="post">
+                    {{ form.hidden_tag() }} <!-- Ensure CSRF token is included -->
+                    <button type="submit" name="reject" class="reject-btn">Reject</button>
+                </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="return-to-dashboard">
+        <a href="{{ url_for('admin_dashboard') }}">Return to Dashboard</a>
+    </div>
+</body>
+</html>
